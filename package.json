@@ -1,8 +1,9 @@
 {
   "name": "use-countdown",
   "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "description": "Countdown with react hooks",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
   "scripts": {
     "build": "tsc",
     "format": "prettier --write \"src/**/*.ts\" \"src/**/*.js\"",
@@ -18,8 +19,8 @@
     "type": "git",
     "url": "git+https://github.com/rahmatrhd/use-countdown.git"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": ["react-hooks", "react", "hooks", "time", "countdown"],
+  "author": "Rahmat HD",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/rahmatrhd/use-countdown/issues"

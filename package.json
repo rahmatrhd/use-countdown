@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/rahmatrhd/use-countdown/issues"
   },
-  "homepage": "https://github.com/rahmatrhd/use-countdown#readme"
+  "homepage": "https://github.com/rahmatrhd/use-countdown#readme",
+  "devDependencies": {
+    "typescript": "^3.3.3333"
+  }
 }

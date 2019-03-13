@@ -1,31 +1,28 @@
-import { useState, useEffect } from 'react'
+import { useEffect, useState } from 'react';
 
 export interface CountdownOptions {
-  readonly targetTime: number
-  readonly interval?: number
+  readonly targetTime: number;
+  readonly interval?: number;
 }
 
-export const useCountdown: (options: CountdownOptions) => number = ({
-  targetTime,
-  interval = 1000,
-}) => {
-  const [ms, setMs] = useState<number>(targetTime - Date.now())
+export const useCountdown: (options: CountdownOptions) => number = ({ targetTime, interval = 1000 }) => {
+  const [ms, setMs] = useState<number>(targetTime - Date.now());
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const delta = targetTime - Date.now()
+      const delta = targetTime - Date.now();
       if (delta > 0) {
-        setMs(delta)
+        setMs(delta);
       } else {
-        setMs(0)
-        clearInterval(intervalId)
+        setMs(0);
+        clearInterval(intervalId);
       }
-    }, interval)
+    }, interval);
 
     return () => {
-      clearInterval(intervalId)
-    }
-  }, [targetTime, interval])
+      clearInterval(intervalId);
+    };
+  }, [targetTime, interval]);
 
-  return ms
-}
+  return ms;
+};

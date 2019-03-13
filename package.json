@@ -29,5 +29,6 @@
   },
   "dependencies": {
     "react": "^16.8.3"
-  }
+  },
+  "files": ["lib/**/*"]
 }

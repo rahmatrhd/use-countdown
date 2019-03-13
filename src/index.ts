@@ -26,3 +26,25 @@ export const useCountdown: (options: CountdownOptions) => number = ({ targetTime
 
   return ms;
 };
+
+export interface FormattedCountdownOptions extends CountdownOptions {
+  readonly includeSymbols?: Array<'d' | 'h' | 'm' | 's'>;
+  readonly separator?: string;
+}
+
+export const useFormattedCountdown: (options: FormattedCountdownOptions) => string = ({
+  includeSymbols = ['d', 'h', 'm', 's'],
+  separator = '',
+  ...options
+}) => {
+  const countdown = useCountdown(options);
+
+  const calcDelta = (ms: number) => ({
+    d: Math.floor(ms / (1000 * 60 * 60 * 24)),
+    h: Math.floor((ms % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
+    m: Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60)),
+    s: Math.floor((ms % (1000 * 60)) / 1000),
+  });
+
+  return includeSymbols.map(symbol => calcDelta(countdown)[symbol] + symbol).join(separator);
+};

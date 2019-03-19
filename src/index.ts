@@ -7,6 +7,7 @@ export interface CountdownOptions {
 
 export const useCountdown: (options: CountdownOptions) => number = ({ targetTime, interval = 1000 }) => {
   const [ms, setMs] = useState<number>(targetTime - Date.now());
+  const [countdownIntervalId, setCountdoiwnIntervalId] = useState<NodeJS.Timeout | null>(null);
 
   useEffect(() => {
     const intervalId = setInterval(() => {
@@ -18,9 +19,12 @@ export const useCountdown: (options: CountdownOptions) => number = ({ targetTime
         clearInterval(intervalId);
       }
     }, interval);
+    setCountdoiwnIntervalId(intervalId);
 
     return () => {
-      clearInterval(intervalId);
+      if (countdownIntervalId) {
+        clearInterval(countdownIntervalId);
+      }
     };
   }, [targetTime, interval]);
 

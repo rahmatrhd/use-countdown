@@ -11,13 +11,7 @@ export const useCountdown: (options: CountdownOptions) => number = ({ targetTime
 
   useEffect(() => {
     const intervalId = setInterval(() => {
-      const delta = targetTime - Date.now();
-      if (delta > 0) {
-        setMs(delta);
-      } else {
-        setMs(0);
-        clearInterval(intervalId);
-      }
+      setMs(targetTime - Date.now());
     }, interval);
     setCountdoiwnIntervalId(intervalId);
 
@@ -27,6 +21,15 @@ export const useCountdown: (options: CountdownOptions) => number = ({ targetTime
       }
     };
   }, [targetTime, interval]);
+
+  useEffect(() => {
+    if (ms < 0) {
+      if (countdownIntervalId) {
+        clearInterval(countdownIntervalId);
+      }
+      setMs(0);
+    }
+  }, [ms]);
 
   return ms;
 };
